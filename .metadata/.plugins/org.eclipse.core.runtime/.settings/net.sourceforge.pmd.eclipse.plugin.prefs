@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+net.sourceforge.pmd.eclipse.plugin.active_renderers=,text
+net.sourceforge.pmd.eclipse.plugin.active_rules=
+net.sourceforge.pmd.eclipse.plugin.ruletable.hiddenColumns=,tExtURL,tXmpCnt,tMaxLang,tSince,fixCnt,tMinLang,modCnt
+net.sourceforge.pmd.eclipse.plugin.ruletable.selectedRules=,AvoidDmlStatementsInLoops

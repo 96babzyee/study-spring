@@ -1,0 +1,5 @@
+package com.busanit.bbs.mapper;
+
+public class BoardMapper {
+
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean class="com.busanit.service.CustomerService" id="custService" />
+	<!-- <bean class="com.busanit.service.CustomerVIPService" id="custService" /> -->
+	<bean class="com.busanit.controller.CustomerController" id="custController">
+		<property ref="custService" name="customerService" />
+	</bean>
+	<bean id="custDelete" class="com.busanit.dao.CustomerDelete" />
+	<bean id="custInsert" class="com.busanit.dao.CustomerInsert" />
+	<bean id="custViewData" class="com.busanit.dao.CustomerViewData" />
+	<bean id="custUpdate" class="com.busanit.dao.CustomerUpdate" />
+	<context:component-scan base-package="com.busanit" /><!-- Annotation을 이용하겠다고 등록 -->
+	<aop:aspectj-autoproxy/> <!-- Annotation을 이용하여 AOP를 쓰기 위해 -->
+</beans>

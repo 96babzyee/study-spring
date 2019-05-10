@@ -1,0 +1,5 @@
+package com.busanit.bbs.dto;
+
+public class BoardDto {
+
+}

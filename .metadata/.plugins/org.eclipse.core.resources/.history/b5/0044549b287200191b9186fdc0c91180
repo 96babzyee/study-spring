@@ -1,0 +1,7 @@
+package com.busanit.bbs.mapper;
+
+public class BoardMapper {
+
+@Select("select * from tbl_board where bno>0")
+public List<BoardDto> getList();
+}

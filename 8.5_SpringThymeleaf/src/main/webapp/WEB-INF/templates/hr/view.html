@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' href='../webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+	<title>CoderBy</title>
+</head>
+<body>
+<h1>사원 정보 상세 조회</h1>
+<table border="1">
+<tr>
+	<th>EMPLOYEE_ID</th>
+	<td th:text="${emp.employeeId}"></td>
+</tr>
+<tr>
+	<th>FIRST_NAME</th>
+	<td th:text="${emp.firstName}"></td>
+</tr>
+<tr>
+	<th>LAST_NAME</th>
+	<td th:text="${emp.lastName}"></td>
+</tr>
+<tr>
+	<th>EMAIL</th>
+	<td th:text="${emp.email}"></td>
+</tr>
+<tr>
+	<th>PHONE_NUMBER</th>
+	<td th:text="${emp.phoneNumber}"></td>
+</tr>
+<tr>
+	<th>HIRE_DATE</th>
+	<td th:text="${emp.hireDate}"></td>
+</tr>
+<tr>
+	<th>JOB_ID</th>
+	<td th:text="${emp.jobId}"></td>
+</tr>
+<tr>
+	<th>SALARY</th>
+	<td th:text="${emp.salary}"></td>
+</tr>
+<tr>
+	<th>COMMISSION_PCT</th>
+	<td th:text="${emp.commissionPct}"></td>
+</tr>
+<tr>
+	<th>MANAGER_ID</th>
+	<td th:text="${emp.managerId}"></td>
+</tr>
+<tr>
+	<th>DEPARTMENT_ID</th>
+	<td th:text="${emp.departmentId}"></td>
+</tr>
+</table>
+<a href="update?empid=${emp.employeeId}">수정하기</a> 
+<a href="delete?empid=${emp.employeeId}">삭제하기</a>
+
+<script src="../webjars/jquery/3.3.1/jquery.min.js"></script> 
+<script src="../webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+  $(function () {
+    console.log("jQuery ready");
+  });
+</script>
+</body>
+</html>

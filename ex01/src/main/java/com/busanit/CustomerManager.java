@@ -1,0 +1,153 @@
+package com.busanit;
+
+import java.util.Scanner;
+
+public class CustomerManager {
+	static final int MAX = 100; // 배열 최대 크기
+
+	static String[] nameList = new String[MAX];
+	static char[] genderList = new char[MAX];
+	static String[] emailList = new String[MAX];
+	static int[] birthYearList = new int[MAX];
+
+	static int cnt = 0; // 데이터가 몇 개 저장되는지 확인하는 변수
+	static int index = -1; // 배열인덱스의 시작은 0부터 시작하므로 최초 인덱스는 -1
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		while (true) {
+			System.out.println("고객 정보 관리 프로그램");
+			System.out.println("현재 고객 : " + cnt + "명");
+			System.out.println("(I)nsert, (P)revious, (C)current, (N)ext, (U)pdate, (D)elete, (Q)uit");
+			System.out.print("메뉴를 선택하세요 : ");
+			String str = sc.next();
+			str = str.toLowerCase(); // 입력한 문자열을 모두소문자로 변환
+			switch (str.charAt(0)) {
+			case 'i':// 고객 정보 입력
+				if (cnt >= MAX)
+					System.out.println("고객 정원 초과");
+				else
+					insert();
+				break;
+			case 'p':// 이전 고객 정보
+				System.out.println("\n< 이전 고객 정보를 출력 >");
+				if (index <= 0) {
+					System.out.println("이전 고객 정보가 존재하지 않음\n");
+				} else {
+					index--;
+					viewData(index);
+				}
+				break;
+			case 'c': // 현재 고객 정보
+				System.out.println("\n< 현재 고객 정보를 출력 >");
+				if (index >= 0 && index == cnt - 1) {
+					viewData(index);
+				} else {
+					System.out.println("현재 고객 정보가 존재하지 않음\n");
+				}
+				break;
+			case 'n': // 다음 고객 정보
+				System.out.println("\n< 다음 고객 정보를 출력 >");
+
+				if (index >= cnt - 1) {
+					System.out.println("다음 고객 정보가 존재하지 않음\n");
+				} else {
+					index++;
+					viewData(index);
+				}
+				break;
+			case 'u':// 고객 정보 수정
+				System.out.println("\n< 고객 정보 수정 >");
+				if (index >= 0 && index < cnt) {
+					System.out.println(nameList[index] + "님의 정보를 수정");
+					update(index);
+					System.out.println("고객 정보  수정 완료!\n");
+				} else {
+					System.out.println("수정할 데이터가 존재하지 않음\n");
+				}
+				break;
+			case 'd':// 고객 정보 삭제
+				System.out.println("\n< 고객 정보 삭제 >");
+				if (index >= 0 && index < cnt) {
+					System.out.println(nameList[index] + "님의 정보를 삭제");
+					delete(index);
+					System.out.println("고객 정보 삭제 완료!\n");
+				} else {
+					System.out.println("삭제할 데이터가 존재하지 않음");
+				}
+				break;
+			case 'q':// 프로그램 종료
+				sc.close();
+				System.out.println("\n< 프로그램 종료 >");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("\n문자 잘못 입력");
+			}
+		}
+
+	}
+
+	// 고객 정보 삽입
+	static void insert() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\n<고객 정보 입력 > ");
+		System.out.print("이름 : ");
+		String name = sc.next();
+		System.out.print("성별(F/M) : ");
+		char gender = sc.next().charAt(0);
+		System.out.print("이메일 : ");
+		String email = sc.next();
+		System.out.print("출생년도 : ");
+		int birthYear = sc.nextInt();
+		System.out.println("== 고객 정보 입력 완료 ==\n");
+
+		nameList[cnt] = name;
+		genderList[cnt] = gender;
+		emailList[cnt] = email;
+		birthYearList[cnt] = birthYear;
+
+		cnt++;
+		index++;
+	}
+
+	// 고객 정보 조회
+	static void viewData(int index) {
+		System.out.println("== 고객 정보 ==");
+		System.out.println("이름 : " + nameList[index]);
+		System.out.println("성별 : " + genderList[index]);
+		System.out.println("이메일 : " + emailList[index]);
+		System.out.println("출생년도 : " + birthYearList[index]);
+		System.out.println("=======================\n");
+	}
+
+	// 고객 정보 수정
+	static void update(int index) {
+		System.out.println("\n<" + nameList[index] + "님의 정보 수정 >");
+		System.out.print("변경할 이름 : ");
+		nameList[index] = sc.next();
+
+		System.out.print("변경할 성별 : ");
+		genderList[index] = sc.next().charAt(0);
+
+		System.out.print("변경할 이메일 : ");
+		emailList[index] = sc.next();
+
+		System.out.print("변경할 출생년도 : ");
+		birthYearList[index] = sc.nextInt();
+	}
+
+	// 고객 정보 삭제
+	static void delete(int index) {
+		for (int i = index; i < cnt - 1; i++) {
+			// 다음 값을 입력해야 하는 이유 >> 중간 번호가 삭제되면 중간 값을 앞으로 이동해야함
+			nameList[i] = nameList[i + 1];
+			genderList[i] = genderList[i + 1];
+			emailList[i] = emailList[i + 1];
+			birthYearList[i] = birthYearList[i + 1];
+		}
+		cnt--;
+	}
+
+}

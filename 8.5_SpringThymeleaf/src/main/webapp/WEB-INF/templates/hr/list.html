@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='./webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+<title>CoderBy</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="starter-template">
+			<h1>사원 목록</h1>
+			<a href="./hr/insert">신규 사원 정보 입력</a>
+		</div>
+
+		<table  class="table table-condensed table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>EMPLOYEE_ID</th>
+					<th>FIRST_NAME</th>
+					<th>LAST_NAME</th>
+					<th>EMAIL</th>
+					<th>PHONE_NUMBER</th>
+					<th>HIRE_DATE</th>
+					<th>JOB_ID</th>
+					<th>SALARY</th>
+					<th>COMMISSION_PCT</th>
+					<th>MANAGER_ID</th>
+					<th>DEPARTMENT_ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp : ${empList}">
+					<td th:inline="text"><a href="/hr/" th:href="@{/hr/{employeeId}(employeeId=${emp.employeeId})}">[[${emp.employeeId}]]</a></td>
+					<td th:text="${emp.firstName}"></td>
+					<td th:text="${emp.lastName}"></td>
+					<td th:text="${emp.email}"></td>
+					<td th:text="${emp.phoneNumber}"></td>
+					<td th:text="${emp.hireDate}"></td>
+					<td th:text="${emp.jobId}"></td>
+					<td th:text="${emp.salary}"></td>
+					<td th:text="${emp.commissionPct}"></td>
+					<td th:text="${emp.managerId}"></td>
+					<td th:text="${emp.departmentId}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div><!-- /.container -->
+
+	<script src="./webjars/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			console.log("jQuery ready");
+		});
+	</script>
+</body>
+</html>

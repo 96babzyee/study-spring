@@ -1,0 +1,9 @@
+package com.busanit.bbs.mapper;
+
+import java.util.List;
+import com.busanit.bbs.dto.BoardDto;
+
+public interface BoardMapper {
+	public List<BoardDto> getList();
+
+}
